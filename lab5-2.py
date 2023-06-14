@@ -4,9 +4,12 @@ def calculate_mean(numbers, lower_threshold=0, upper_threshold=1):
     mean = sum(filtered_numbers) / len(filtered_numbers)
     return round(mean, 2)
 
-# Example usage
-number_list = [3, 5, 2, 8, 1, 9]
+
+number_list = [3, 5, 2, 8, 1, 9, 0.9, 0.1, 0.5, 0.7]
 lower_thresh = 0.2
 upper_thresh = 0.8
 mean_value = calculate_mean(number_list, lower_threshold=lower_thresh, upper_threshold=upper_thresh)
+print("number_list:", number_list)
 print("Mean value:", mean_value)
+print("lower_threshold:", lower_thresh)
+print("upper_threshold:", upper_thresh)
