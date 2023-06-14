@@ -1,15 +1,21 @@
-def calculate_mean(numbers, lower_threshold=0, upper_threshold=1):
-    normalized_numbers = [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]
-    filtered_numbers = [x for x in normalized_numbers if lower_threshold <= x <= upper_threshold]
-    mean = sum(filtered_numbers) / len(filtered_numbers)
-    return round(mean, 2)
+def calculate_filtered_mean(numbers, lower_threshold=0, upper_threshold=1):
+    normalized_values = [round(value / max(numbers), 2) for value in numbers]
+    filtered_values = [value for value in normalized_values if lower_threshold <= value <= upper_threshold]
+    mean = sum(filtered_values) / len(filtered_values) if filtered_values else 0
+    return filtered_values, mean
 
 
-number_list = [3, 5, 2, 8, 1, 9, 0.9, 0.1, 0.5, 0.7]
-lower_thresh = 0.2
-upper_thresh = 0.8
-mean_value = calculate_mean(number_list, lower_threshold=lower_thresh, upper_threshold=upper_thresh)
-print("number_list:", number_list)
-print("Mean value:", mean_value)
-print("lower_threshold:", lower_thresh)
-print("upper_threshold:", upper_thresh)
+numbers = [1, 2, 3]
+
+filtered_values, mean = calculate_filtered_mean(numbers)
+
+print("Input numbers:", numbers)
+print("Filtered and normalized values:", filtered_values)
+
+lower_threshold = 0.5
+upper_threshold = 1
+filtered_values, mean = calculate_filtered_mean(numbers, lower_threshold, upper_threshold)
+
+print("Thresholds: lower =", lower_threshold, "upper =", upper_threshold)
+print("Filtered and normalized values within thresholds:", filtered_values)
+print("Mean of filtered values:", round(mean, 2))

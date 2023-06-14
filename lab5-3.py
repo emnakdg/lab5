@@ -1,21 +1,22 @@
-def calculate_filtered_mean(numbers, lower_threshold=0, upper_threshold=1):
-    normalized_values = [round(value / max(numbers), 2) for value in numbers]
-    filtered_values = [value for value in normalized_values if lower_threshold <= value <= upper_threshold]
-    mean = sum(filtered_values) / len(filtered_values) if filtered_values else 0
-    return filtered_values, mean
+def mean_with_args(*args):
+    if not args:
+        return 0.0
+    total = sum(args)
+    return round(total / len(args), 2)
+
+def mean_with_kwargs(**kwargs):
+    if not kwargs:
+        return 0.0
+    total = sum(kwargs.values())
+    return round(total / len(kwargs), 2)
 
 
 numbers = [1, 2, 3, 4, 5]
+kwargs = {'num1': 10, 'num2': 20, 'num3': 30}
 
-filtered_values, mean = calculate_filtered_mean(numbers)
+mean_args = mean_with_args(*numbers)
+print("Mean with *args:", mean_args)
 
-print("Input numbers:", numbers)
-print("Filtered and normalized values:", filtered_values)
 
-lower_threshold = 0.5
-upper_threshold = 1
-filtered_values, mean = calculate_filtered_mean(numbers, lower_threshold, upper_threshold)
-
-print("Thresholds: lower =", lower_threshold, "upper =", upper_threshold)
-print("Filtered and normalized values within thresholds:", filtered_values)
-print("Mean of filtered values:", round(mean, 2))
+mean_kwargs = mean_with_kwargs(**kwargs)
+print("Mean with **kwargs:", mean_kwargs)
